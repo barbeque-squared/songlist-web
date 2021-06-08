@@ -14,6 +14,7 @@
 .Songbrowser .inputs input[type="text"] {
   display: block;
   width: 100%;
+  font-size: inherit;
 }
 
 .Songbrowser .inputs .checkboxes {
