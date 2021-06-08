@@ -6,6 +6,20 @@
 
 .Songbrowser .inputs {
   flex-grow: 0;
+  font-size: 1.5em;
+  min-width: 50%;
+  margin: auto;
+}
+
+.Songbrowser .inputs input[type="text"] {
+  display: block;
+  width: 100%;
+}
+
+.Songbrowser .inputs .checkboxes {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  text-align: center;
 }
 
 .Songbrowser table {

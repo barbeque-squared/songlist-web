@@ -13,4 +13,17 @@ body {
 
 .App .category {
   flex-grow: 0;
+  font-size: 1.5em;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10%;
+  min-width: 50%;
+  margin: auto;
+  text-align: center;
+}
+
+.App .category label {
+  background-color: #840;
+  padding: .2em .5em;
+  border-radius: 0.5em;
 }
