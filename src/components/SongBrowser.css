@@ -6,13 +6,14 @@
 
 .Songbrowser .inputs {
   flex-grow: 0;
-  font-size: 1.5em;
+  font-size: 1.25em;
   min-width: 50%;
   margin: auto;
 }
 
 .Songbrowser .inputs input[type="text"] {
   display: block;
+  margin: .2em 0;
   width: 100%;
   font-size: inherit;
 }
@@ -20,7 +21,13 @@
 .Songbrowser .inputs .checkboxes {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: .5em;
   text-align: center;
+}
+.Songbrowser .inputs .checkboxes label {
+  background-color: #21468b;
+  padding: .2em .5em;
+  border-radius: 0.5em;
 }
 
 .Songbrowser table {

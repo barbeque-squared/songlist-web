@@ -13,17 +13,17 @@ body {
 
 .App .category {
   flex-grow: 0;
-  font-size: 1.5em;
+  font-size: 1.25em;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 10%;
+  grid-gap: 5%;
   min-width: 50%;
   margin: auto;
   text-align: center;
 }
 
 .App .category label {
-  background-color: #840;
+  background-color: #ae1c28;
   padding: .2em .5em;
   border-radius: 0.5em;
 }
