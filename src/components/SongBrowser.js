@@ -1,9 +1,8 @@
 import React, {PureComponent} from 'react'
 
 import './SongBrowser.css'
-import LanguageIcon from './LanguageIcon'
 import type { Song } from '../types/Song'
-import Variant from '../constants/Variant'
+import SongRow from './SongRow'
 
 interface SongBrowserProps {
   songs: Song[]
@@ -21,7 +20,12 @@ class SongBrowser extends PureComponent<SongBrowserProps> {
   }
 
   updateFilter(event) {
-    this.setState({filter: event.target.value})
+    const newValue = event.target.value
+    if (newValue.length > 3) {
+      this.setState({ filter: newValue.toLowerCase() })
+    } else {
+      this.setState({ filter: '' })
+    }
   }
 
   checkInstrumental = (event) => {
@@ -34,31 +38,11 @@ class SongBrowser extends PureComponent<SongBrowserProps> {
     this.setState({ lossless: event.target.checked })
   }
 
-  variantsIncludeAnyOf(variants: Variant[], options: Variant[]) {
-    return variants.map(v => options.includes(v)).reduce((a, b) => a || b)
-  }
-
-  isInstrumental(song) {
-    return this.variantsIncludeAnyOf(song.variants,
-      [Variant.INSTRUMENTAL, Variant.LOSSLESS_INSTRUMENTAL]
-    )
-  }
-  isDuet(song) {
-    return this.variantsIncludeAnyOf(song.variants,
-      [Variant.DUET, Variant.LOSSLESS_DUET]
-    )
-  }
-  isLossless(song) {
-    return this.variantsIncludeAnyOf(song.variants,
-      [Variant.LOSSLESS, Variant.LOSSLESS_INSTRUMENTAL, Variant.LOSSLESS_DUET, Variant.LOSSLESS_INSTRUMENTAL_DUET]
-    )
-  }
-
   render() {
     return (
       <div className={'Songbrowser'}>
         <div className={'inputs'}>
-          <input type="text" value={this.state.filter} onChange={this.updateFilter.bind(this)} placeholder="Filter" />
+          <input type="text" defaultValue={''} onChange={this.updateFilter.bind(this)} placeholder="Filter" />
           <div className={'checkboxes'}>
             <label>
               <input type={'checkbox'} checked={this.state.instrumental} onChange={this.checkInstrumental} />
@@ -97,29 +81,15 @@ class SongBrowser extends PureComponent<SongBrowserProps> {
               </tr>
             </thead>
             <tbody>
-              {this.props.songs
-                .filter(song =>
-                  (
-                    song.artist.toLowerCase().includes(this.state.filter.toLowerCase()) ||
-                    song.title.toLowerCase().includes(this.state.filter.toLowerCase())
-                  ) && (this.state.instrumental ? this.isInstrumental(song) : true)
-                  && (this.state.duet ? this.isDuet(song) : true)
-                  && (this.state.lossless ? this.isLossless(song) : true)
-                )
-                .map((song) => (
-                <tr key={song.artist+song.title}>
-                  <td>{song.artist}</td>
-                  <td><LanguageIcon language={song.language} /></td>
-                  <td>{song.title}</td>
-                  <td>{song.variants.includes(Variant.LOSSY) ? '●' : ''}</td>
-                  <td>{song.variants.includes(Variant.INSTRUMENTAL) ? '●' : ''}</td>
-                  <td>{song.variants.includes(Variant.DUET) ? '●' : ''}</td>
-                  <td>{song.variants.includes(Variant.INSTRUMENTAL_DUET) ? '●': ''}</td>
-                  <td className={'lossless'}>{song.variants.includes(Variant.LOSSLESS) ? '●' : ''}</td>
-                  <td className={'lossless'}>{song.variants.includes(Variant.LOSSLESS_INSTRUMENTAL) ? '●' : ''}</td>
-                  <td className={'lossless'}>{song.variants.includes(Variant.LOSSLESS_DUET) ? '●' : ''}</td>
-                  <td className={'lossless'}>{song.variants.includes(Variant.LOSSLESS_INSTRUMENTAL_DUET) ? '●': ''}</td>
-                </tr>
+              {this.props.songs.map((song) => (
+                <SongRow
+                  key={song.artist+song.title}
+                  song={song}
+                  filter={this.state.filter}
+                  instrumental={this.state.instrumental}
+                  duet={this.state.duet}
+                  lossless={this.state.lossless}
+                />
               ))}
             </tbody>
           </table>

@@ -43,17 +43,13 @@
   text-align: left;
 }
 
-.Songbrowser tbody tr:nth-child(odd) {
+.Songbrowser tbody .SongRow:nth-child(odd) {
   background-color: rgba(0, 0, 0, 0.3);
 }
 .Songbrowser thead th.lossless,
-.Songbrowser tbody tr td.lossless {
+.Songbrowser tbody .SongRow td.lossless {
   background-color: #840;
 }
-.Songbrowser tbody tr:nth-child(odd) td.lossless {
+.Songbrowser tbody .SongRow:nth-child(odd) td.lossless {
   background-color: rgba(128, 64, 0, 0.8);
-}
-
-.Songbrowser tbody img.language {
-  height: 1em;
 }
