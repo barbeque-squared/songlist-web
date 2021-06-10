@@ -16,7 +16,7 @@ body {
   font-size: 1.25em;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 5%;
+  grid-gap: .5em;
   min-width: 50%;
   margin: auto;
   text-align: center;
@@ -24,6 +24,6 @@ body {
 
 .App .category label {
   background-color: #ae1c28;
-  padding: .2em .5em;
+  padding: .25em .5em;
   border-radius: 0.5em;
 }

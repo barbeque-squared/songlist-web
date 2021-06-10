@@ -6,5 +6,4 @@
 .SongRow > td.lossy,
 .SongRow > td.lossless {
   text-align: center;
-  width: 1.05em;
 }

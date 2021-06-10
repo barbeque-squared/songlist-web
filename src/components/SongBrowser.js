@@ -42,7 +42,9 @@ class SongBrowser extends PureComponent<SongBrowserProps> {
     return (
       <div className={'Songbrowser'}>
         <div className={'inputs'}>
-          <input type="text" defaultValue={''} onChange={this.updateFilter.bind(this)} placeholder="Filter" />
+          <div className={'text'}>
+            <input type="text" defaultValue={''} onChange={this.updateFilter.bind(this)} placeholder="Filter... (needs at least 4 characters)" />
+          </div>
           <div className={'checkboxes'}>
             <label>
               <input type={'checkbox'} checked={this.state.instrumental} onChange={this.checkInstrumental} />
@@ -68,12 +70,12 @@ class SongBrowser extends PureComponent<SongBrowserProps> {
               </tr>
               <tr>
                 <th className={'left'}>Artist</th>
-                <th/>
+                <th className={'language'}/>
                 <th className={'left'}>Title</th>
-                <th title="Regular">R</th>
-                <th title="Instrumental">I</th>
-                <th title="Duet">D</th>
-                <th title="Duet Instrumental">DI</th>
+                <th className={'lossy'} title="Regular">R</th>
+                <th className={'lossy'} title="Instrumental">I</th>
+                <th className={'lossy'} title="Duet">D</th>
+                <th className={'lossy'} title="Duet Instrumental">DI</th>
                 <th className={'lossless'} title="Lossless">R</th>
                 <th className={'lossless'} title="Lossless Instrumental">I</th>
                 <th className={'lossless'} title="Lossless Duet">D</th>

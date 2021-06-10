@@ -11,22 +11,26 @@
   margin: auto;
 }
 
+.Songbrowser .inputs .text {
+  display: grid;
+}
 .Songbrowser .inputs input[type="text"] {
   display: block;
   margin: .2em 0;
-  width: 100%;
   font-size: inherit;
+  padding: .2em .5em;
+  border-radius: 0.5em;
 }
 
 .Songbrowser .inputs .checkboxes {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: .5em;
+  grid-gap: .25em;
   text-align: center;
 }
 .Songbrowser .inputs .checkboxes label {
   background-color: #21468b;
-  padding: .2em .5em;
+  padding: .25em .5em;
   border-radius: 0.5em;
 }
 
@@ -48,6 +52,11 @@
 }
 .Songbrowser thead tr:last-child th {
   top: 1.1em;
+}
+.Songbrowser thead tr:last-child th.language,
+.Songbrowser thead tr:last-child th.lossy,
+.Songbrowser thead tr:last-child th.lossless {
+  width: 1.05em;
 }
 
 /* Colors */
