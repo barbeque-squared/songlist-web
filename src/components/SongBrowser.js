@@ -67,9 +67,9 @@ class SongBrowser extends PureComponent<SongBrowserProps> {
                 <th colSpan={4} className={'lossless'}>Lossless</th>
               </tr>
               <tr>
-                <th>Artist</th>
+                <th className={'left'}>Artist</th>
                 <th/>
-                <th>Title</th>
+                <th className={'left'}>Title</th>
                 <th title="Regular">R</th>
                 <th title="Instrumental">I</th>
                 <th title="Duet">D</th>

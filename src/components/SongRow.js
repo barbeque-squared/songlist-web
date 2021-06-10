@@ -71,12 +71,12 @@ class SongRow extends PureComponent<SongRowProps> {
     return (
       <tr className={'SongRow'}>
         <td>{song.artist}</td>
-        <td><LanguageIcon language={song.language} /></td>
+        <td className={'language'}><LanguageIcon language={song.language} /></td>
         <td>{song.title}</td>
-        <td>{song.variants.includes(Variant.LOSSY) ? '●' : ''}</td>
-        <td>{song.variants.includes(Variant.INSTRUMENTAL) ? '●' : ''}</td>
-        <td>{song.variants.includes(Variant.DUET) ? '●' : ''}</td>
-        <td>{song.variants.includes(Variant.INSTRUMENTAL_DUET) ? '●': ''}</td>
+        <td className={'lossy'}>{song.variants.includes(Variant.LOSSY) ? '●' : ''}</td>
+        <td className={'lossy'}>{song.variants.includes(Variant.INSTRUMENTAL) ? '●' : ''}</td>
+        <td className={'lossy'}>{song.variants.includes(Variant.DUET) ? '●' : ''}</td>
+        <td className={'lossy'}>{song.variants.includes(Variant.INSTRUMENTAL_DUET) ? '●': ''}</td>
         <td className={'lossless'}>{song.variants.includes(Variant.LOSSLESS) ? '●' : ''}</td>
         <td className={'lossless'}>{song.variants.includes(Variant.LOSSLESS_INSTRUMENTAL) ? '●' : ''}</td>
         <td className={'lossless'}>{song.variants.includes(Variant.LOSSLESS_DUET) ? '●' : ''}</td>

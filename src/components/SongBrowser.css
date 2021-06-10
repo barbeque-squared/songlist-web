@@ -30,19 +30,27 @@
   border-radius: 0.5em;
 }
 
+/* Layout */
 .Songbrowser table {
   border-collapse: collapse;
   width: 100%;
 }
-
-.Songbrowser thead {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  background-color: #222;
+.Songbrowser thead .left {
   text-align: left;
 }
+.Songbrowser thead tr th {
+  position: sticky;
+  z-index: 1;
+  background-color: #222;
+}
+.Songbrowser thead tr:first-child th {
+  top: 0;
+}
+.Songbrowser thead tr:last-child th {
+  top: 1.1em;
+}
 
+/* Colors */
 .Songbrowser tbody .SongRow:nth-child(odd) {
   background-color: rgba(0, 0, 0, 0.3);
 }
