@@ -58,7 +58,9 @@
 .Songbrowser thead tr:last-child th.lossless {
   width: 1.05em;
 }
-
+.Songbrowser thead tr:last-child th.dmx {
+  width: 2.5em;
+}
 /* Colors */
 .Songbrowser tbody .SongRow:nth-child(odd) {
   background-color: rgba(0, 0, 0, 0.3);

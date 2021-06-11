@@ -63,6 +63,14 @@ class SongRow extends PureComponent<SongRowProps> {
     )
   }
 
+  dmxString() {
+    switch (this.props.song.dmx) {
+      case 0: return null
+      case 1: return '●'
+      default: return this.props.song.dmx
+    }
+  }
+
   render() {
     if (!this.shouldRender()) {
       return null
@@ -81,6 +89,7 @@ class SongRow extends PureComponent<SongRowProps> {
         <td className={'lossless'}>{song.variants.includes(Variant.LOSSLESS_INSTRUMENTAL) ? '●' : ''}</td>
         <td className={'lossless'}>{song.variants.includes(Variant.LOSSLESS_DUET) ? '●' : ''}</td>
         <td className={'lossless'}>{song.variants.includes(Variant.LOSSLESS_INSTRUMENTAL_DUET) ? '●': ''}</td>
+        <td className={'dmx'}>{this.dmxString()}</td>
       </tr>
     )
   }

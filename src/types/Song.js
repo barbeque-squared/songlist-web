@@ -5,5 +5,6 @@ export interface Song {
   artist: string,
   title: string,
   language: Language,
-  variants: Variant[]
+  variants: Variant[],
+  dmx: number
 }

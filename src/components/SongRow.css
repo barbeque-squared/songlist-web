@@ -4,6 +4,7 @@
 
 .SongRow > td.language,
 .SongRow > td.lossy,
-.SongRow > td.lossless {
+.SongRow > td.lossless,
+.SongRow > td.dmx {
   text-align: center;
 }
