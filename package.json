@@ -5,9 +5,9 @@
   "private": true,
   "dependencies": {
     "language-icons": "^0.3.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "^5.0.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "^5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -33,7 +33,7 @@
     ]
   },
   "devDependencies": {
-    "flow-bin": "^0.170.0",
+    "flow-bin": "^0.185.1",
     "postcss-normalize": "^10.0.1"
   }
 }
