@@ -1,17 +1,6 @@
 import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
-
-import Czech from 'language-icons/icons/cs.svg'
-import Dutch from 'language-icons/icons/nl.svg'
-import French from 'language-icons/icons/fr.svg'
-import German from 'language-icons/icons/de.svg'
-import Hungarian from 'language-icons/icons/hu.svg'
-import Italian from 'language-icons/icons/it.svg'
-import Japanese from 'language-icons/icons/ja.svg'
-import Polish from 'language-icons/icons/pl.svg'
-import Romanian from 'language-icons/icons/ro.svg'
-import Russian from 'language-icons/icons/ru.svg'
-import Spanish from 'language-icons/icons/es.svg'
+import '/node_modules/flag-icons/css/flag-icons.min.css'
 
 class LanguageIcon extends PureComponent {
   render() {
@@ -19,26 +8,25 @@ class LanguageIcon extends PureComponent {
     if (this.props.language === 'English') {
       return null
     }
-    let Icon = undefined
+    let icon = undefined
     switch (this.props.language) {
-      case 'Czech': Icon = Czech; break
-      case 'Dutch': Icon = Dutch; break
-      case 'French': Icon = French; break
-      case 'German': Icon = German; break
-      case 'Hungarian': Icon = Hungarian; break
-      case 'Italian': Icon = Italian; break
-      case 'Japanese': Icon = Japanese; break
-      case 'Polish': Icon = Polish; break
-      case 'Romanian': Icon = Romanian; break
-      case 'Russian': Icon = Russian; break
-      case 'Spanish': Icon = Spanish; break
-      default: Icon = undefined
+      case 'Czech': icon = 'cz'; break
+      case 'Dutch': icon = 'nl'; break
+      case 'French': icon = 'fr'; break
+      case 'German': icon = 'de'; break
+      case 'Hungarian': icon = 'hu'; break
+      case 'Italian': icon = 'it'; break
+      case 'Japanese': icon = 'jp'; break
+      case 'Polish': icon = 'pl'; break
+      case 'Romanian': icon = 'ro'; break
+      case 'Russian': icon = 'ru'; break
+      case 'Spanish': icon = 'es'; break
+      case 'Ukrainian': icon = 'ua'; break
+      default: icon = undefined
     }
-    if (Icon !== undefined) {
-      return <img
-        className='language'
-        alt={this.props.language}
-        src={Icon}
+    if (icon !== undefined) {
+      return <span
+        className={`language fi fi-${icon}`}
         title={this.props.language}
       />
     }

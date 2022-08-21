@@ -1,7 +1,3 @@
-.SongRow img.language {
-  height: 1em;
-}
-
 .SongRow > td.language,
 .SongRow > td.lossy,
 .SongRow > td.lossless,

@@ -5012,6 +5012,11 @@ find-up@^5.0.0:
     locate-path "^6.0.0"
     path-exists "^4.0.0"
 
+flag-icons@^6.6.4:
+  version "6.6.4"
+  resolved "https://registry.yarnpkg.com/flag-icons/-/flag-icons-6.6.4.tgz#e1ee37b2dd946fb576bbf7586814ed3eedcee7ae"
+  integrity sha512-hRRXKw3f5F2OCcDTOTXO0tc3ODqBx/ttA61V9mqy/hVbnFXzW+7tJMLQ+xd77+BXwdUzQAMLW2G4RZqqvaN3Mg==
+
 flat-cache@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/flat-cache/-/flat-cache-3.0.4.tgz#61b0338302b2fe9f957dcc32fc2a87f1c3048b11"
@@ -6432,11 +6437,6 @@ klona@^2.0.5:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/klona/-/klona-2.0.5.tgz#d166574d90076395d9963aa7a928fabb8d76afbc"
   integrity sha512-pJiBpiXMbt7dkzXe8Ghj/u4FfXOOa98fPW+bihOJ4SjnoijweJrNThJfd3ifXpXhREjpoF2mZVH1GfS9LV3kHQ==
-
-language-icons@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/language-icons/-/language-icons-0.3.0.tgz#6fd598b46d0713ff6d3d2b450fbe9e863962a2c0"
-  integrity sha512-cLsiI8At0vwHojI921oXe1LfWBH1i54r1aZjkRoHOVzZvQj3OVWX1B/UuxgKfgUmbORm7M71iP4wXbDIk2c1GA==
 
 language-subtag-registry@~0.3.2:
   version "0.3.21"
