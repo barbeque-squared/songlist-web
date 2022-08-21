@@ -81,14 +81,14 @@ class SongRow extends PureComponent<SongRowProps> {
         <td>{song.artist}</td>
         <td className={'language'}><LanguageIcon language={song.language} /></td>
         <td>{song.title}</td>
-        <td className={'lossy'}>{song.variants.includes(Variant.LOSSY) ? '●' : ''}</td>
-        <td className={'lossy'}>{song.variants.includes(Variant.INSTRUMENTAL) ? '●' : ''}</td>
-        <td className={'lossy'}>{song.variants.includes(Variant.DUET) ? '●' : ''}</td>
-        <td className={'lossy'}>{song.variants.includes(Variant.INSTRUMENTAL_DUET) ? '●': ''}</td>
-        <td className={'lossless'}>{song.variants.includes(Variant.LOSSLESS) ? '●' : ''}</td>
-        <td className={'lossless'}>{song.variants.includes(Variant.LOSSLESS_INSTRUMENTAL) ? '●' : ''}</td>
-        <td className={'lossless'}>{song.variants.includes(Variant.LOSSLESS_DUET) ? '●' : ''}</td>
-        <td className={'lossless'}>{song.variants.includes(Variant.LOSSLESS_INSTRUMENTAL_DUET) ? '●': ''}</td>
+        <td className={'quality lossy'}>{song.variants.includes(Variant.LOSSY) && 'r'}</td>
+        <td className={'quality lossy'}>{song.variants.includes(Variant.INSTRUMENTAL) && 'i'}</td>
+        <td className={'quality lossy'}>{song.variants.includes(Variant.DUET) && 'd'}</td>
+        <td className={'quality lossy'}>{song.variants.includes(Variant.INSTRUMENTAL_DUET) && 'di'}</td>
+        <td className={'quality lossless'}>{song.variants.includes(Variant.LOSSLESS) && 'r'}</td>
+        <td className={'quality lossless'}>{song.variants.includes(Variant.LOSSLESS_INSTRUMENTAL) && 'i'}</td>
+        <td className={'quality lossless'}>{song.variants.includes(Variant.LOSSLESS_DUET) && 'd'}</td>
+        <td className={'quality lossless'}>{song.variants.includes(Variant.LOSSLESS_INSTRUMENTAL_DUET) && 'di'}</td>
         <td className={'dmx'}>{this.dmxString()}</td>
       </tr>
     )

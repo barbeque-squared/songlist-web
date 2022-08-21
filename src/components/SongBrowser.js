@@ -64,23 +64,11 @@ class SongBrowser extends PureComponent<SongBrowserProps> {
           <table>
             <thead>
               <tr>
-                <th colSpan={3} />
-                <th colSpan={4}>Lossy</th>
-                <th colSpan={4} className={'lossless'}>Lossless</th>
-                <th/>
-              </tr>
-              <tr>
                 <th className={'left'}>Artist</th>
                 <th className={'language'}/>
                 <th className={'left'}>Title</th>
-                <th className={'lossy'} title="Regular">R</th>
-                <th className={'lossy'} title="Instrumental">I</th>
-                <th className={'lossy'} title="Duet">D</th>
-                <th className={'lossy'} title="Duet Instrumental">DI</th>
-                <th className={'lossless'} title="Lossless">R</th>
-                <th className={'lossless'} title="Lossless Instrumental">I</th>
-                <th className={'lossless'} title="Lossless Duet">D</th>
-                <th className={'lossless'} title="Lossless Duet Instrumental">DI</th>
+                <th colSpan={4} className={'quality-header'}>Lossy</th>
+                <th colSpan={4} className={'quality-header lossless'}>Lossless</th>
                 <th className={'dmx'}>DMX</th>
               </tr>
             </thead>

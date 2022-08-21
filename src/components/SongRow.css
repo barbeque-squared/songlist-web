@@ -1,3 +1,6 @@
+.SongRow > td.quality {
+  width: 1.05em;
+}
 .SongRow > td.language,
 .SongRow > td.lossy,
 .SongRow > td.lossless,

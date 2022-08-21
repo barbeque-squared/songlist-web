@@ -45,20 +45,16 @@
 .Songbrowser thead tr th {
   position: sticky;
   z-index: 1;
+  top: 0;
   background-color: #222;
 }
-.Songbrowser thead tr:first-child th {
-  top: 0;
-}
-.Songbrowser thead tr:last-child th {
-  top: 1.1em;
-}
-.Songbrowser thead tr:last-child th.language,
-.Songbrowser thead tr:last-child th.lossy,
-.Songbrowser thead tr:last-child th.lossless {
+.Songbrowser thead tr th.language {
   width: 1.05em;
 }
-.Songbrowser thead tr:last-child th.dmx {
+.Songbrowser thead tr th.quality-header {
+  width: 4.2em;
+}
+.Songbrowser thead tr th.dmx {
   width: 2.5em;
 }
 /* Colors */
