@@ -62,13 +62,13 @@
   width: 2.5em;
 }
 /* Colors */
-.Songbrowser tbody .SongRow:nth-child(odd) {
+.Songbrowser tbody .SongRow {
+  border-top: 1px solid #333;
   background-color: rgba(0, 0, 0, 0.3);
 }
-.Songbrowser thead th.lossless,
-.Songbrowser tbody .SongRow td.lossless {
+.Songbrowser thead th.lossless {
   background-color: #840;
 }
-.Songbrowser tbody .SongRow:nth-child(odd) td.lossless {
+.Songbrowser tbody .SongRow td.lossless {
   background-color: rgba(128, 64, 0, 0.8);
 }
