@@ -66,6 +66,10 @@
   border-top: 1px solid #333;
   background-color: rgba(0, 0, 0, 0.3);
 }
+.Songbrowser tbody .SongRow:hover {
+  background-color: lightgrey;
+  color: #333;
+}
 .Songbrowser thead th.lossless {
   background-color: #840;
 }
