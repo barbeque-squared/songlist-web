@@ -12,6 +12,7 @@ class SongBrowser extends PureComponent<SongBrowserProps> {
   constructor(props) {
     super(props)
     this.state = {
+      filterInput: '',
       filter: '',
       instrumental: false,
       duet: false,
@@ -22,9 +23,9 @@ class SongBrowser extends PureComponent<SongBrowserProps> {
   updateFilter(event) {
     const newValue = event.target.value
     if (newValue.length > 3) {
-      this.setState({ filter: newValue.toLowerCase() })
+      this.setState({ filterInput: newValue, filter: newValue.toLowerCase() })
     } else {
-      this.setState({ filter: '' })
+      this.setState({ filterInput: newValue, filter: '' })
     }
   }
 
@@ -42,8 +43,11 @@ class SongBrowser extends PureComponent<SongBrowserProps> {
     return (
       <div className={'Songbrowser'}>
         <div className={'inputs'}>
-          <div className={'text'}>
-            <input type="text" defaultValue={''} onChange={this.updateFilter.bind(this)} placeholder="Filter... (needs at least 4 characters)" />
+          <div className={'text' + (this.state.filterInput !== '' ? ' with-button' : '')}>
+            <input type="text" value={this.state.filterInput} onChange={this.updateFilter.bind(this)} placeholder="Filter... (needs at least 4 characters)" />
+            {this.state.filterInput !== '' && (
+              <button onClick={() => this.setState({filterInput: '', filter: ''})}>✖</button>
+            )}
           </div>
           <div className={'checkboxes'}>
             <label>

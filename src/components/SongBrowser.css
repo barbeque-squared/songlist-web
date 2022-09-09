@@ -12,14 +12,28 @@
 }
 
 .Songbrowser .inputs .text {
+  margin: .2em 0;
   display: grid;
+}
+.Songbrowser .inputs .text.with-button {
+  grid-template-columns: auto 3em;
+  grid-gap: .1em;
 }
 .Songbrowser .inputs input[type="text"] {
   display: block;
-  margin: .2em 0;
   font-size: inherit;
   padding: .2em .5em;
   border-radius: 0.5em;
+  outline: none;
+}
+.Songbrowser .inputs .with-button input[type="text"] {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.Songbrowser .inputs .with-button button {
+  border-radius: 0 .4em .4em 0;
+  font-size: 1.4em;
+  line-height: 1em;
 }
 
 .Songbrowser .inputs .checkboxes {
