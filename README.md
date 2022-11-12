@@ -1,6 +1,6 @@
 Simple app that can show songlists.
 
-Modify `App.js` to change the songlist endpoints.
+Modify `App.tsx` to change the songlist endpoints.
 
 It uses Flow for some static type hinting.
 

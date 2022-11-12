@@ -1,5 +1,5 @@
-import type { Language } from './Language'
-import type { Variant } from '../constants/Variant'
+import { Language } from './Language'
+import { Variant } from '../constants/Variant'
 
 export interface Song {
   artist: string,

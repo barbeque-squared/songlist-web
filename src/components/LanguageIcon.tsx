@@ -1,14 +1,18 @@
-import React, {PureComponent} from 'react'
-import PropTypes from 'prop-types'
+import * as React from 'react'
+import {PureComponent} from 'react'
 import '/node_modules/flag-icons/css/flag-icons.min.css'
 
-class LanguageIcon extends PureComponent {
+interface Props {
+  language: string
+}
+
+class LanguageIcon extends PureComponent<Props> {
   render() {
     // explicitly do not render English
     if (this.props.language === 'English') {
       return null
     }
-    let icon = undefined
+    let icon
     switch (this.props.language) {
       case 'Czech': icon = 'cz'; break
       case 'Dutch': icon = 'nl'; break
@@ -33,10 +37,6 @@ class LanguageIcon extends PureComponent {
     console.log('Unknown language: ' + this.props.language)
     return ' ?'+this.props.language
   }
-}
-
-LanguageIcon.propTypes = {
-  language: PropTypes.string.isRequired
 }
 
 export default LanguageIcon

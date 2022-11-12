@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "outdir": "build",
+    "target": "esnext",
+    "moduleResolution": "Node",
+    "jsx": "react"
+  },
+  "include": ["src/**/*"]
+}

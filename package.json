@@ -1,13 +1,19 @@
 {
   "homepage": "pch/songlist",
   "name": "songlist",
+  "engines": {
+    "pnpm": ">=3"
+  },
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/node": "^18.11.9",
+    "@types/react": "^18.0.25",
     "flag-icons": "^6.6.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "^5.0.1"
+    "react-scripts": "^5.0.1",
+    "typescript": "^4.8.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -33,7 +39,6 @@
     ]
   },
   "devDependencies": {
-    "flow-bin": "^0.185.1",
     "postcss-normalize": "^10.0.1"
   }
 }

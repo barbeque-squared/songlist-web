@@ -1,9 +1,10 @@
-import React, {PureComponent} from 'react'
+import * as React from 'react'
+import {PureComponent} from 'react'
 
 import './SongRow.css'
 import LanguageIcon from './LanguageIcon'
-import type { Song } from '../types/Song'
-import Variant from '../constants/Variant'
+import { Song } from '../types/Song'
+import { Variant } from '../constants/Variant'
 
 interface SongRowProps {
   song: Song;
@@ -15,14 +16,11 @@ interface SongRowProps {
 }
 
 class SongRow extends PureComponent<SongRowProps> {
-  constructor(props) {
-    super(props)
-    this.lartist = props.song.artist.toLowerCase()
-    this.ltitle = props.song.title.toLowerCase()
-  }
+  private lartist = this.props.song.artist.toLowerCase()
+  private ltitle = this.props.song.title.toLowerCase()
 
   variantsIncludeAnyOf(options: Variant[]) {
-    return this.props.song.variants.map(v => options.includes(v)).reduce((a, b) => a || b)
+    return this.props.song.variants.some(v => options.includes(v))
   }
 
   isInstrumental() {

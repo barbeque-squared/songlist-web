@@ -1,4 +1,5 @@
-import React, {PureComponent} from 'react'
+import * as React from 'react'
+import {PureComponent} from 'react'
 
 import './SongBrowser.css'
 import type { Song } from '../types/Song'
@@ -7,8 +8,15 @@ import SongRow from './SongRow'
 interface SongBrowserProps {
   songs: Song[]
 }
+interface State {
+  filterInput: string
+  filter: string
+  instrumental: boolean
+  duet: boolean
+  lossless: boolean
+}
 
-class SongBrowser extends PureComponent<SongBrowserProps> {
+class SongBrowser extends PureComponent<SongBrowserProps, State> {
   constructor(props) {
     super(props)
     this.state = {
@@ -59,7 +67,7 @@ class SongBrowser extends PureComponent<SongBrowserProps> {
               Duet
             </label>
             <label>
-              <input type={'checkbox'} value={this.state.lossless} onChange={this.checkLossless} />
+              <input type={'checkbox'} checked={this.state.lossless} onChange={this.checkLossless} />
               Lossless
             </label>
           </div>

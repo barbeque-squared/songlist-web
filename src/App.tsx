@@ -1,10 +1,19 @@
-import React, {Component} from 'react';
+import * as React from 'react'
+import {Component} from 'react';
 import './App.css';
 import SongBrowser from './components/SongBrowser'
+import { Song } from './types/Song'
 
-class App extends Component {
-  constructor(props) {
-    super(props)
+interface State {
+  ponySongs: Song[]
+  nonPonySongs: Song[]
+  category: string
+}
+
+
+class App extends Component<never, State> {
+  constructor() {
+    super({} as never)
     this.state = {
       ponySongs: [],
       nonPonySongs: [],
