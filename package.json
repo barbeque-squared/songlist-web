@@ -19,9 +19,11 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "transfer": "rsync --archive --delete build/ $npm_config_deploy_path",
+    "build-caramel": "PUBLIC_URL=/ REACT_APP_PONY_URL=/pony.json REACT_APP_NONPONY_URL=/nonpony.json react-scripts build",
+    "transfer": "rsync --archive --delete build/ strato:/var/www/barbeque.one/pch/songlist",
     "transfer-caramel": "rsync --archive --delete --exclude '*pony.json' build/ caramel:/usr/share/nginx/html",
-    "deploy": "yarn build && yarn transfer",
+    "deploy2": "pnpm build && pnpm transfer",
+    "deploy-caramel": "pnpm build-caramel && pnpm transfer-caramel",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
