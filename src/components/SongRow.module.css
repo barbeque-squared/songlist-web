@@ -1,0 +1,22 @@
+.SongRow > td.quality {
+  width: 1.05em;
+}
+.SongRow > td.language,
+.SongRow > td.lossy,
+.SongRow > td.lossless,
+.SongRow > td.dmx {
+  text-align: center;
+}
+
+/* Colors */
+.SongRow {
+  border-top: 1px solid #333;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.SongRow:hover {
+  background-color: lightgrey;
+  color: #333;
+}
+.SongRow td.lossless {
+  background-color: rgba(128, 64, 0, 0.8);
+}

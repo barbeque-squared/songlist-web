@@ -1,96 +1,39 @@
-import * as React from 'react'
-import {PureComponent} from 'react'
-
-import './SongRow.css'
+import styles from './SongRow.module.css'
 import LanguageIcon from './LanguageIcon'
 import { Song } from '../types/Song'
 import { Variant } from '../constants/Variant'
 
 interface SongRowProps {
   song: Song;
-  // make sure to give this as lowercase!!!
-  filter: string;
-  instrumental: boolean;
-  duet: boolean;
-  lossless: boolean;
 }
 
-class SongRow extends PureComponent<SongRowProps> {
-  private lartist = this.props.song.artist.toLowerCase()
-  private ltitle = this.props.song.title.toLowerCase()
+const SongRow = (props: SongRowProps) => {
+  const variantsInclude = (option: Variant) => props.song.variants.includes(option)
 
-  variantsIncludeAnyOf(options: Variant[]) {
-    return this.props.song.variants.some(v => options.includes(v))
-  }
-
-  isInstrumental() {
-    return this.variantsIncludeAnyOf([
-      Variant.INSTRUMENTAL,
-      Variant.LOSSLESS_INSTRUMENTAL
-    ])
-  }
-  isDuet() {
-    return this.variantsIncludeAnyOf([
-      Variant.DUET,
-      Variant.LOSSLESS_DUET
-    ])
-  }
-  isLossless() {
-    return this.variantsIncludeAnyOf([
-      Variant.LOSSLESS,
-      Variant.LOSSLESS_INSTRUMENTAL,
-      Variant.LOSSLESS_DUET,
-      Variant.LOSSLESS_INSTRUMENTAL_DUET
-    ])
-  }
-
-  shouldRender() {
-    if (
-      (this.props.instrumental && !this.isInstrumental())
-      || (this.props.duet && !this.isDuet())
-      || (this.props.lossless && !this.isLossless())
-    ) {
-      return false
-    }
-    if (this.props.filter.length < 4) {
-      return true
-    }
-    return (
-      this.lartist.includes(this.props.filter)
-      || this.ltitle.includes(this.props.filter)
-    )
-  }
-
-  dmxString() {
-    switch (this.props.song.dmx) {
+  const dmxString = () => {
+    switch (props.song.dmx) {
       case 0: return null
       case 1: return '●'
-      default: return this.props.song.dmx
+      default: return props.song.dmx
     }
   }
 
-  render() {
-    if (!this.shouldRender()) {
-      return null
-    }
-    const song = this.props.song
-    return (
-      <tr className={'SongRow'}>
-        <td>{song.artist}</td>
-        <td className={'language'}><LanguageIcon language={song.language} /></td>
-        <td>{song.title}</td>
-        <td className={'quality lossy'}>{song.variants.includes(Variant.LOSSY) && 'r'}</td>
-        <td className={'quality lossy'}>{song.variants.includes(Variant.INSTRUMENTAL) && 'i'}</td>
-        <td className={'quality lossy'}>{song.variants.includes(Variant.DUET) && 'd'}</td>
-        <td className={'quality lossy'}>{song.variants.includes(Variant.INSTRUMENTAL_DUET) && 'di'}</td>
-        <td className={'quality lossless'}>{song.variants.includes(Variant.LOSSLESS) && 'r'}</td>
-        <td className={'quality lossless'}>{song.variants.includes(Variant.LOSSLESS_INSTRUMENTAL) && 'i'}</td>
-        <td className={'quality lossless'}>{song.variants.includes(Variant.LOSSLESS_DUET) && 'd'}</td>
-        <td className={'quality lossless'}>{song.variants.includes(Variant.LOSSLESS_INSTRUMENTAL_DUET) && 'di'}</td>
-        <td className={'dmx'}>{this.dmxString()}</td>
-      </tr>
-    )
-  }
+  return(
+    <tr class={styles.SongRow}>
+      <td>{props.song.artist}</td>
+      <td class={styles.language}><LanguageIcon language={props.song.language} /></td>
+      <td>{props.song.title}</td>
+      <td classList={{[styles.quality]: true, [styles.lossy]: true}}>{variantsInclude(Variant.LOSSY) && 'r'}</td>
+      <td classList={{[styles.quality]: true, [styles.lossy]: true}}>{variantsInclude(Variant.INSTRUMENTAL) && 'i'}</td>
+      <td classList={{[styles.quality]: true, [styles.lossy]: true}}>{variantsInclude(Variant.DUET) && 'd'}</td>
+      <td classList={{[styles.quality]: true, [styles.lossy]: true}}>{variantsInclude(Variant.INSTRUMENTAL_DUET) && 'di'}</td>
+      <td classList={{[styles.quality]: true, [styles.lossless]: true}}>{variantsInclude(Variant.LOSSLESS) && 'r'}</td>
+      <td classList={{[styles.quality]: true, [styles.lossless]: true}}>{variantsInclude(Variant.LOSSLESS_INSTRUMENTAL) && 'i'}</td>
+      <td classList={{[styles.quality]: true, [styles.lossless]: true}}>{variantsInclude(Variant.LOSSLESS_DUET) && 'd'}</td>
+      <td classList={{[styles.quality]: true, [styles.lossless]: true}}>{variantsInclude(Variant.LOSSLESS_INSTRUMENTAL_DUET) && 'di'}</td>
+      <td class={styles.dmx}>{dmxString()}</td>
+    </tr>
+  )
 }
 
 export default SongRow

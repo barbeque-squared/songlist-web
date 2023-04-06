@@ -1,106 +1,131 @@
-import * as React from 'react'
-import {PureComponent} from 'react'
-
-import './SongBrowser.css'
+import styles from './SongBrowser.module.css'
 import type { Song } from '../types/Song'
-import SongRow from './SongRow'
+import {createMemo, createSignal, For} from "solid-js";
+import SongRow from "./SongRow";
+import {Variant} from "../constants/Variant";
 
 interface SongBrowserProps {
   songs: Song[]
 }
-interface State {
-  filterInput: string
-  filter: string
-  instrumental: boolean
-  duet: boolean
-  lossless: boolean
-}
 
-class SongBrowser extends PureComponent<SongBrowserProps, State> {
-  constructor(props) {
-    super(props)
-    this.state = {
-      filterInput: '',
-      filter: '',
-      instrumental: false,
-      duet: false,
-      lossless: false
-    }
+const SongBrowser = (props: SongBrowserProps) => {
+  const [filterInput, setFilterInput] = createSignal('')
+  const [filter, setFilter] = createSignal('')
+  const [instrumental, setInstrumental] = createSignal(false)
+  const [duet, setDuet] = createSignal(false)
+  const [lossless, setLossLess] = createSignal(false)
+
+  const clearFilter = () => {
+    setFilterInput('')
+    setFilter('')
   }
 
-  updateFilter(event) {
+  const updateFilter = (event: any) => {
     const newValue = event.target.value
+    setFilterInput(newValue)
     if (newValue.length > 3) {
-      this.setState({ filterInput: newValue, filter: newValue.toLowerCase() })
+      setFilter(newValue.toLowerCase())
     } else {
-      this.setState({ filterInput: newValue, filter: '' })
+      setFilter('')
     }
   }
 
-  checkInstrumental = (event) => {
-    this.setState({ instrumental: event.target.checked })
+  const checkInstrumental = (event: any) => {
+    setInstrumental(event.target.checked)
   }
-  checkDuet = (event) => {
-    this.setState({ duet: event.target.checked })
+  const checkDuet = (event: any) => {
+    setDuet(event.target.checked)
   }
-  checkLossless = (event) => {
-    this.setState({ lossless: event.target.checked })
+  const checkLossless = (event: any) => {
+    setLossLess(event.target.checked)
   }
 
-  render() {
-    return (
-      <div className={'Songbrowser'}>
-        <div className={'inputs'}>
-          <div className={'text' + (this.state.filterInput !== '' ? ' with-button' : '')}>
-            <input type="text" value={this.state.filterInput} onChange={this.updateFilter.bind(this)} placeholder="Filter... (needs at least 4 characters)" />
-            {this.state.filterInput !== '' && (
-              <button onClick={() => this.setState({filterInput: '', filter: ''})}>✖</button>
-            )}
-          </div>
-          <div className={'checkboxes'}>
-            <label>
-              <input type={'checkbox'} checked={this.state.instrumental} onChange={this.checkInstrumental} />
-              Instrumental
-            </label>
-            <label>
-              <input type={'checkbox'} checked={this.state.duet} onChange={this.checkDuet} />
-              Duet
-            </label>
-            <label>
-              <input type={'checkbox'} checked={this.state.lossless} onChange={this.checkLossless} />
-              Lossless
-            </label>
-          </div>
+  //region a bunch of functions on songs
+  const variantsIncludeAnyOf = (song: Song, options: Variant[]) => {
+    return song.variants.some(v => options.includes(v))
+  }
+
+  const isInstrumental = (song: Song) => {
+    return variantsIncludeAnyOf(song, [
+      Variant.INSTRUMENTAL,
+      Variant.LOSSLESS_INSTRUMENTAL
+    ])
+  }
+  const isDuet = (song: Song) => {
+    return variantsIncludeAnyOf(song, [
+      Variant.DUET,
+      Variant.LOSSLESS_DUET
+    ])
+  }
+  const isLossless = (song: Song) => {
+    return variantsIncludeAnyOf(song, [
+      Variant.LOSSLESS,
+      Variant.LOSSLESS_INSTRUMENTAL,
+      Variant.LOSSLESS_DUET,
+      Variant.LOSSLESS_INSTRUMENTAL_DUET
+    ])
+  }
+
+  const shouldRender = (song: Song) => {
+    if (
+        (instrumental() && !isInstrumental(song))
+        || (duet() && !isDuet(song))
+        || (lossless() && !isLossless(song))
+    ) {
+      return false
+    }
+    if (filter().length < 4) {
+      return true
+    }
+    return (song.artist.toLowerCase().includes(filter()) || song.title.toLowerCase().includes(filter()))
+  }
+  //endregion
+
+  const filteredList = createMemo(() => props.songs.filter(shouldRender))
+
+  return (
+    <div class={styles.Songbrowser}>
+      <div class={styles.inputs}>
+        <div class={styles.text}>
+          <input type="text" value={filterInput()} oninput={updateFilter} placeholder="Filter... (needs at least 4 characters)" />
+          <button onClick={clearFilter} disabled={filterInput() === ''}>✖</button>
         </div>
-        <div className="scrolltable">
-          <table>
-            <thead>
-              <tr>
-                <th className={'left'}>Artist</th>
-                <th className={'language'}/>
-                <th className={'left'}>Title</th>
-                <th colSpan={4} className={'quality-header'}>Lossy</th>
-                <th colSpan={4} className={'quality-header lossless'}>Lossless</th>
-                <th className={'dmx'}>DMX</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.props.songs.map((song) => (
-                <SongRow
-                  key={song.artist+song.title}
-                  song={song}
-                  filter={this.state.filter}
-                  instrumental={this.state.instrumental}
-                  duet={this.state.duet}
-                  lossless={this.state.lossless}
-                />
-              ))}
-            </tbody>
-          </table>
+        <div class={styles.checkboxes}>
+          <label>
+            <input type={'checkbox'} checked={instrumental()} oninput={checkInstrumental} />
+            Instrumental
+          </label>
+          <label>
+            <input type={'checkbox'} checked={duet()} onChange={checkDuet} />
+            Duet
+          </label>
+          <label>
+            <input type={'checkbox'} checked={lossless()} onChange={checkLossless} />
+            Lossless
+          </label>
         </div>
       </div>
-    )
-  }
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th class={styles.left}>Artist</th>
+              <th class={styles.language}/>
+              <th class={styles.left}>Title</th>
+              <th colSpan={4} class={styles.qualityHeader}>Lossy</th>
+              <th colSpan={4} classList={{[styles.qualityHeader]: true, [styles.lossless]: true}}>Lossless</th>
+              <th class={styles.dmx}>DMX</th>
+            </tr>
+          </thead>
+          <tbody>
+            <For each={filteredList()}>{(song) =>
+                <SongRow song={song} />
+            }</For>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  )
 }
 
 export default SongBrowser

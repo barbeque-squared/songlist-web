@@ -1,8 +1,4 @@
-/build/
-/node_modules/
-/.firebase/
-/.npmrc
+/.idea
+/node_modules
+/dist
 *.local
-
-# editor specific
-/.idea/

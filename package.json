@@ -1,44 +1,27 @@
 {
-  "homepage": "pch/songlist",
   "name": "songlist",
-  "engines": {
-    "pnpm": ">=3"
-  },
   "version": "0.1.0",
+  "description": "",
   "private": true,
-  "dependencies": {
-    "@types/node": "^18.11.9",
-    "@types/react": "^18.0.25",
-    "flag-icons": "^6.6.6",
-    "postcss-normalize": "^10.0.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "^5.0.1",
-    "typescript": "^4.8.4"
-  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "build-caramel": "PUBLIC_URL=/ REACT_APP_PONY_URL=/pony.json REACT_APP_NONPONY_URL=/nonpony.json react-scripts build",
-    "transfer": "rsync --archive --delete build/ strato:/var/www/barbeque.one/pch/songlist",
-    "transfer-caramel": "rsync --archive --delete --exclude '*pony.json' build/ caramel:/usr/share/nginx/html",
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "build-caramel": "PUBLIC_URL=/ VITE_PONY_URL=/pony.json VITE_NONPONY_URL=/nonpony.json vite build",
+    "transfer": "rsync --archive --delete dist/ strato:/var/www/barbeque.one/pch/songlist",
+    "transfer-caramel": "rsync --archive --delete --exclude '*pony.json' dist/ caramel:/usr/share/nginx/html",
     "deploy2": "pnpm build && pnpm transfer",
-    "deploy-caramel": "pnpm build-caramel && pnpm transfer-caramel",
-    "eject": "react-scripts eject"
+    "deploy-caramel": "pnpm build-caramel && pnpm transfer-caramel"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.9.5",
+    "vite": "^4.1.1",
+    "vite-plugin-solid": "^2.5.0"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "dependencies": {
+    "flag-icons": "^6.6.6",
+    "solid-js": "^1.6.10"
   }
 }

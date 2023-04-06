@@ -1,54 +1,41 @@
-import * as React from 'react'
-import {Component} from 'react';
-import './App.css';
-import SongBrowser from './components/SongBrowser'
-import { Song } from './types/Song'
+import type { Component } from 'solid-js';
 
-interface State {
-  ponySongs: Song[]
-  nonPonySongs: Song[]
-  category: string
-}
+import styles from './App.module.css';
+import {createSignal, For, onMount} from "solid-js";
+import {Song} from "./types/Song";
+import SongBrowser from "./components/SongBrowser";
 
+const App: Component = () => {
+  const [ponySongs, setPonySongs] = createSignal<Song[]>([])
+  const [nonPonySongs, setNonPonySongs] = createSignal<Song[]>([])
+  const [category, setCategory] = createSignal('pony')
 
-class App extends Component<never, State> {
-  constructor() {
-    super({} as never)
-    this.state = {
-      ponySongs: [],
-      nonPonySongs: [],
-      category: 'pony',
-    }
-  }
-
-  componentDidMount() {
-    fetch(`${process.env.REACT_APP_PONY_URL}`)
+  onMount(async () => {
+    fetch(`${import.meta.env.VITE_PONY_URL}`)
       .then(response => response.json())
-      .then(json => this.setState({ponySongs: json.songlist}))
-    fetch(`${process.env.REACT_APP_NONPONY_URL}`)
+      .then(json => setPonySongs(json.songlist))
+    fetch(`${import.meta.env.VITE_NONPONY_URL}`)
       .then(response => response.json())
-      .then(json => this.setState({nonPonySongs: json.songlist}))
+      .then(json => setNonPonySongs(json.songlist))
+  })
+
+  const radioCategory = (event: any) => {
+    setCategory(event.currentTarget.value)
   }
 
-  radioCategory = (event) => {
-    this.setState({category: event.target.value})
-  }
-
-  render() {
-    return (
-      <div className={'App'}>
-        <div className={'category'}>
-          {['pony', 'non-pony'].map(c => {return (
-            <label key={c}>
-              <input type={'radio'} name={'category'} value={c} onChange={this.radioCategory} defaultChecked={this.state.category === c}/>
-              {c}
-            </label>
-          )})}
-        </div>
-        <SongBrowser songs={this.state.category === 'pony' ? this.state.ponySongs : this.state.nonPonySongs} />
+  return (
+    <div class={styles.App}>
+      <div class={styles.category}>
+        <For each={['pony', 'non-pony']}>{(c) =>
+          <label>
+            <input type={'radio'} name={'category'} value={c} onInput={radioCategory} checked={category() === c} />
+            {c}
+          </label>
+        }</For>
       </div>
-    )
-  }
+      <SongBrowser songs={category() === 'pony' ? ponySongs() : nonPonySongs()} />
+    </div>
+  )
 }
 
 export default App

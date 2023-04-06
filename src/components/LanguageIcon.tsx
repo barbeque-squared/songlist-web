@@ -1,19 +1,13 @@
-import * as React from 'react'
-import {PureComponent} from 'react'
 import '/node_modules/flag-icons/css/flag-icons.min.css'
+import {Show} from "solid-js";
 
 interface Props {
   language: string
 }
 
-class LanguageIcon extends PureComponent<Props> {
-  render() {
-    // explicitly do not render English
-    if (this.props.language === 'English') {
-      return null
-    }
-    let icon
-    switch (this.props.language) {
+const LanguageIcon = (props: Props) => {
+  let icon
+    switch (props.language) {
       case 'Czech': icon = 'cz'; break
       case 'Dutch': icon = 'nl'; break
       case 'Flemish': icon = 'be'; break
@@ -29,15 +23,14 @@ class LanguageIcon extends PureComponent<Props> {
       case 'Ukrainian': icon = 'ua'; break
       default: icon = undefined
     }
-    if (icon !== undefined) {
-      return <span
-        className={`language fi fi-${icon}`}
-        title={this.props.language}
-      />
-    }
-    console.log('Unknown language: ' + this.props.language)
-    return ' ?'+this.props.language
-  }
+
+  return (
+    <Show when={props.language !== 'English'}>
+      <Show when={icon} fallback={` ?${props.language}`}>
+        <span classList={{['fi']: true, [`fi-${icon}`]: true}} title={props.language} />
+      </Show>
+    </Show>
+  )
 }
 
 export default LanguageIcon
