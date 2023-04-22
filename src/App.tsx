@@ -1,4 +1,4 @@
-import type { Component } from 'solid-js';
+import type { Component, Setter } from 'solid-js';
 
 import styles from './App.module.css';
 import {createSignal, For, onMount} from "solid-js";
@@ -8,15 +8,28 @@ import SongBrowser from "./components/SongBrowser";
 const App: Component = () => {
   const [ponySongs, setPonySongs] = createSignal<Song[]>([])
   const [nonPonySongs, setNonPonySongs] = createSignal<Song[]>([])
+  const [shimmerSongs, setShimmerSongs] = createSignal<Song[]>([])
   const [category, setCategory] = createSignal('pony')
 
+  const fetchJson = (name: string, setter: Setter<Song[]>) => {
+    fetch(`${import.meta.env.VITE_JSON_PREFIX}/${name}.json`)
+      .then(response => response.json())
+      .then(json => setter(json.songlist))
+  }
+
+  const getSongs = () => {
+    switch(category()) {
+      case 'pony': return ponySongs();
+      case 'non-pony': return nonPonySongs();
+      case 'shimmer': return shimmerSongs();
+      default: return []
+    }
+  }
+
   onMount(async () => {
-    fetch(`${import.meta.env.VITE_JSON_PREFIX}/pony.json`)
-      .then(response => response.json())
-      .then(json => setPonySongs(json.songlist))
-    fetch(`${import.meta.env.VITE_JSON_PREFIX}/nonpony.json`)
-      .then(response => response.json())
-      .then(json => setNonPonySongs(json.songlist))
+    fetchJson('pony', setPonySongs)
+    fetchJson('nonpony', setNonPonySongs)
+    fetchJson('shimmer', setShimmerSongs)
   })
 
   const radioCategory = (event: any) => {
@@ -26,14 +39,14 @@ const App: Component = () => {
   return (
     <div class={styles.App}>
       <div class={styles.category}>
-        <For each={['pony', 'non-pony']}>{(c) =>
+        <For each={['pony', 'non-pony', 'shimmer']}>{(c) =>
           <label>
             <input type={'radio'} name={'category'} value={c} onInput={radioCategory} checked={category() === c} />
             {c}
           </label>
         }</For>
       </div>
-      <SongBrowser songs={category() === 'pony' ? ponySongs() : nonPonySongs()} />
+      <SongBrowser songs={getSongs()} />
     </div>
   )
 }
