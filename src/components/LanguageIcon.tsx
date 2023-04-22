@@ -24,6 +24,10 @@ const LanguageIcon = (props: Props) => {
     default: icon = undefined
   }
 
+  if (props.language !== 'English' && icon === undefined && import.meta.env.DEV) {
+    console.warn(`Unknown language: ${props.language}`)
+  }
+
   return (
     <Show when={props.language !== 'English'}>
       <Show when={icon} fallback={` ?${props.language}`}>
