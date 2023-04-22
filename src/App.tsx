@@ -11,10 +11,10 @@ const App: Component = () => {
   const [category, setCategory] = createSignal('pony')
 
   onMount(async () => {
-    fetch(`${import.meta.env.VITE_PONY_URL}`)
+    fetch(`${import.meta.env.VITE_JSON_PREFIX}/pony.json`)
       .then(response => response.json())
       .then(json => setPonySongs(json.songlist))
-    fetch(`${import.meta.env.VITE_NONPONY_URL}`)
+    fetch(`${import.meta.env.VITE_JSON_PREFIX}/nonpony.json`)
       .then(response => response.json())
       .then(json => setNonPonySongs(json.songlist))
   })

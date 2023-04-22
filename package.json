@@ -8,7 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "build-caramel": "VITE_PONY_URL=/pony.json VITE_NONPONY_URL=/nonpony.json vite build --base=/",
+    "build-caramel": "VITE_JSON_PREFIX= vite build --base=/",
     "transfer": "rsync --archive --delete dist/ strato:/var/www/barbeque.one/pch/songlist",
     "transfer-caramel": "rsync --archive --delete --exclude '*pony.json' dist/ caramel:/usr/share/nginx/html",
     "deploy2": "pnpm build && pnpm transfer",
