@@ -16,10 +16,13 @@ const LanguageIcon = (props: Props) => {
     case 'Hungarian': icon = 'hu'; break
     case 'Italian': icon = 'it'; break
     case 'Japanese': icon = 'jp'; break
+    case 'Korean': icon = 'kr'; break
+    case 'Norwegian': icon = 'no'; break
     case 'Polish': icon = 'pl'; break
     case 'Romanian': icon = 'ro'; break
     case 'Russian': icon = 'ru'; break
     case 'Spanish': icon = 'es'; break
+    case 'Swedish': icon = 'se'; break
     case 'Ukrainian': icon = 'ua'; break
     default: icon = undefined
   }
