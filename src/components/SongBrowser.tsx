@@ -14,6 +14,7 @@ const SongBrowser = (props: SongBrowserProps) => {
   const [instrumental, setInstrumental] = createSignal(false)
   const [duet, setDuet] = createSignal(false)
   const [lossless, setLossLess] = createSignal(false)
+  const [languageFilter, setLanguageFilter] = createSignal('')
 
   const clearFilter = () => {
     setFilterInput('')
@@ -28,6 +29,10 @@ const SongBrowser = (props: SongBrowserProps) => {
     } else {
       setFilter('')
     }
+  }
+
+  const updateLanguage = (event: any) => {
+    setLanguageFilter(event.target.value)
   }
 
   const checkInstrumental = (event: any) => {
@@ -74,6 +79,13 @@ const SongBrowser = (props: SongBrowserProps) => {
     ) {
       return false
     }
+    if (languageFilter().length > 0) {
+      switch (languageFilter()) {
+        case 'English': if (song.language !== 'English') {return false} break
+        case 'German': if (song.language !== 'German') {return false} break
+        case 'Other': if (song.language === 'English' || song.language === 'German') {return false}
+      }
+    }
     if (filter().length < 4) {
       return true
     }
@@ -87,6 +99,12 @@ const SongBrowser = (props: SongBrowserProps) => {
     <div class={styles.Songbrowser}>
       <div class={styles.inputs}>
         <div class={styles.text}>
+          <select onChange={updateLanguage}>
+            <option selected value={''}>Any</option>
+            <option value={'English'}>English</option>
+            <option value={'German'}>German</option>
+            <option value={'Other'}>Other</option>
+          </select>
           <input type="text" value={filterInput()} oninput={updateFilter} placeholder="Filter... (needs at least 4 characters)" />
           <button onClick={clearFilter} disabled={filterInput() === ''}>✖</button>
         </div>
