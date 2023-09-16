@@ -46,6 +46,11 @@ const App: Component = () => {
           </label>
         }</For>
       </div>
+      {category() === 'shimmer' && (
+        <div class={styles.category_no_qa}>
+          ⚠ not QA checked! ⚠
+        </div>
+      )}
       <SongBrowser songs={getSongs()} />
     </div>
   )

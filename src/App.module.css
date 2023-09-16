@@ -26,3 +26,9 @@ body {
   padding: .25em .5em;
   border-radius: 0.5em;
 }
+
+.App .category_no_qa {
+  background-color: #d9c50b;
+  color: black;
+  text-align: center;
+}
