@@ -7,6 +7,8 @@ interface SongRowProps {
   song: Song;
 }
 
+const currentYear = new Date().getFullYear()
+
 const SongRow = (props: SongRowProps) => {
   const variantsInclude = (option: Variant) => props.song.variants.includes(option)
 
@@ -18,12 +20,26 @@ const SongRow = (props: SongRowProps) => {
     }
   }
 
+  const renderYear = (year: number | null) => {
+    if (year === null) {
+      return null
+    }
+    if (year > currentYear || year < currentYear - 97) {
+      return year
+    }
+    const yearString = year.toString()
+    return <>
+      <span class={styles.century}>{yearString.substring(0, 2)}</span>
+      {yearString.substring(2)}
+    </>
+  }
+
   return(
     <tr class={styles.SongRow}>
       <td>{props.song.artist}</td>
       <td class={styles.language}><LanguageIcon language={props.song.language} /></td>
       <td>{props.song.title}</td>
-      <td>{props.song.year}</td>
+      <td>{renderYear(props.song.year)}</td>
       <td classList={{[styles.quality]: true, [styles.lossy]: true}}>{variantsInclude(Variant.LOSSY) && 'r'}</td>
       <td classList={{[styles.quality]: true, [styles.lossy]: true}}>{variantsInclude(Variant.INSTRUMENTAL) && 'i'}</td>
       <td classList={{[styles.quality]: true, [styles.lossy]: true}}>{variantsInclude(Variant.DUET) && 'd'}</td>

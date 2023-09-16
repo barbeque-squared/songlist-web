@@ -7,6 +7,12 @@
 .SongRow > td.dmx {
   text-align: center;
 }
+.SongRow > td > span.century {
+  opacity: 0;
+}
+.SongRow:hover > td > span.century {
+  opacity: 1;
+}
 
 /* Colors */
 .SongRow {
