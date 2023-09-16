@@ -23,6 +23,7 @@ const SongRow = (props: SongRowProps) => {
       <td>{props.song.artist}</td>
       <td class={styles.language}><LanguageIcon language={props.song.language} /></td>
       <td>{props.song.title}</td>
+      <td>{props.song.year}</td>
       <td classList={{[styles.quality]: true, [styles.lossy]: true}}>{variantsInclude(Variant.LOSSY) && 'r'}</td>
       <td classList={{[styles.quality]: true, [styles.lossy]: true}}>{variantsInclude(Variant.INSTRUMENTAL) && 'i'}</td>
       <td classList={{[styles.quality]: true, [styles.lossy]: true}}>{variantsInclude(Variant.DUET) && 'd'}</td>

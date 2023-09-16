@@ -112,6 +112,7 @@ const SongBrowser = (props: SongBrowserProps) => {
               <th class={styles.left}>Artist</th>
               <th class={styles.language}/>
               <th class={styles.left}>Title</th>
+              <th class={styles.left}>Year</th>
               <th colSpan={4} class={styles.qualityHeader}>Lossy</th>
               <th colSpan={4} classList={{[styles.qualityHeader]: true, [styles.lossless]: true}}>Lossless</th>
               <th class={styles.dmx}>DMX</th>
