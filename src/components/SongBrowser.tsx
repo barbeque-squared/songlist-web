@@ -15,6 +15,8 @@ const SongBrowser = (props: SongBrowserProps) => {
   const [duet, setDuet] = createSignal(false)
   const [lossless, setLossLess] = createSignal(false)
   const [languageFilter, setLanguageFilter] = createSignal('')
+  const [yearFrom, setYearFrom] = createSignal(0)
+  const [yearTo, setYearTo] = createSignal(0)
 
   const clearFilter = () => {
     setFilterInput('')
@@ -33,6 +35,14 @@ const SongBrowser = (props: SongBrowserProps) => {
 
   const updateLanguage = (event: any) => {
     setLanguageFilter(event.target.value)
+  }
+
+  const updateYearFrom = (event: any) => {
+    setYearFrom(event.target.value)
+  }
+
+  const updateYearTo = (event: any) => {
+    setYearTo(event.target.value)
   }
 
   const checkInstrumental = (event: any) => {
@@ -79,6 +89,8 @@ const SongBrowser = (props: SongBrowserProps) => {
     ) {
       return false
     }
+    if (yearFrom() > 0 && (song.year === null || song.year < yearFrom())) {return false}
+    if (yearTo() > 0 && (song.year === null || song.year >= yearTo())) {return false}
     if (languageFilter().length > 0) {
       switch (languageFilter()) {
         case 'English': if (song.language !== 'English') {return false} break
@@ -120,6 +132,21 @@ const SongBrowser = (props: SongBrowserProps) => {
           <label>
             <input type={'checkbox'} checked={lossless()} onChange={checkLossless} />
             Lossless
+          </label>
+          <label>
+            <select onChange={updateYearFrom}>
+              <option selected value={0}>From</option>
+              {[1900, 1970, 1980, 1990, 2000, 2010, 2015, 2020].map(year => (
+                <option value={year}>{year}</option>
+              ))}
+            </select>
+            {' - '}
+            <select onChange={updateYearTo}>
+              <option selected value={0}>To</option>
+              {[1970, 1980, 1990, 2000, 2010, 2015, 2020, 2025].map(year => (
+                <option value={year}>{year}</option>
+              ))}
+            </select>
           </label>
         </div>
       </div>
