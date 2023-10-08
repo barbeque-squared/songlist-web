@@ -10,7 +10,6 @@ const LanguageIcon = (props: Props) => {
   switch (props.language) {
     case 'Czech': icon = 'cz'; break
     case 'Dutch': icon = 'nl'; break
-    case 'Flemish': icon = 'be'; break
     case 'French': icon = 'fr'; break
     case 'German': icon = 'de'; break
     case 'Hungarian': icon = 'hu'; break
