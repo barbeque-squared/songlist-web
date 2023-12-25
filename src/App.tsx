@@ -52,6 +52,9 @@ const App: Component = () => {
         </div>
       )}
       <SongBrowser songs={getSongs()} />
+      <footer>
+        Source: <a href="https://github.com/barbeque-squared/songlist-web">https://github.com/barbeque-squared/songlist-web</a>
+      </footer>
     </div>
   )
 }

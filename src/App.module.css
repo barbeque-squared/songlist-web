@@ -32,3 +32,11 @@ body {
   color: black;
   text-align: center;
 }
+
+.App footer {
+  margin-top: .5em;
+  text-align: center;
+}
+.App footer a {
+  color: steelblue;
+}
