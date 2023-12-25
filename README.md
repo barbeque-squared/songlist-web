@@ -8,3 +8,6 @@ Modify `App.tsx` to change the songlist endpoints.
 * `pnpm build` - build production
 * `pnpm transfer` - rsync the build folder. Modify the relevant line in `package.json` before running this.
 * `pnpm deploy2` - build + transfer in one command
+
+## Song json
+Use songlist-json from [ultrastar-scripts](https://github.com/barbeque-squared/ultrastar-scripts).
