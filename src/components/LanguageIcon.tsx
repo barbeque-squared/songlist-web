@@ -1,3 +1,4 @@
+import styles from './LanguageIcon.module.css'
 import '/node_modules/flag-icons/css/flag-icons.min.css'
 import { Show } from "solid-js";
 
@@ -7,6 +8,8 @@ interface Props {
 
 function languageToIcon(language: string): string | undefined {
   switch (language) {
+    case 'English': return 'gb'
+    case 'Austrian': return 'at'
     case 'Czech': return 'cz'
     case 'Dutch': return 'nl'
     case 'French': return 'fr'
@@ -16,27 +19,34 @@ function languageToIcon(language: string): string | undefined {
     case 'Japanese': return 'jp'
     case 'Korean': return 'kr'
     case 'Norwegian': return 'no'
+    case 'Other': return 'xx'
     case 'Polish': return 'pl'
     case 'Romanian': return 'ro'
     case 'Russian': return 'ru'
     case 'Spanish': return 'es'
     case 'Swedish': return 'se'
     case 'Ukrainian': return 'ua'
-    default: return undefined
+    default: {
+      if (import.meta.env.DEV) {
+        console.warn(`Unknown language: ${language}`)
+      }
+      return undefined
+    }
   }
 }
 
 const LanguageIcon = (props: Props) => {
-  const icon = languageToIcon(props.language)
-  if (props.language !== 'English' && icon === undefined && import.meta.env.DEV) {
-    console.warn(`Unknown language: ${props.language}`)
-  }
+  const icons = props.language === 'English' ? [] : props.language.split(',')
+    .map(l => languageToIcon(l.trim()))
 
   return (
     <Show when={props.language !== 'English'}>
-      <Show when={icon} fallback={` ?${props.language}`}>
-        <span classList={{ ['fi']: true, [`fi-${icon}`]: true }} title={props.language} />
-      </Show>
+      <span class={styles.LanguageIcon} title={props.language}>
+        <For each={icons}>{(icon) => {
+          return icon === undefined ? <span>??</span> :
+            <span classList={{ ['fi']: true, [`fi-${icon}`]: true }} title={props.language} />
+        }}</For>
+      </span>
     </Show>
   )
 }

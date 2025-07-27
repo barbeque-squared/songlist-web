@@ -1,0 +1,7 @@
+.LanguageIcon {
+  flex-grow: 999;
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  column-gap: .1em;
+}
