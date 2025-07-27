@@ -5,27 +5,29 @@ interface Props {
   language: string
 }
 
-const LanguageIcon = (props: Props) => {
-  let icon
-  switch (props.language) {
-    case 'Czech': icon = 'cz'; break
-    case 'Dutch': icon = 'nl'; break
-    case 'French': icon = 'fr'; break
-    case 'German': icon = 'de'; break
-    case 'Hungarian': icon = 'hu'; break
-    case 'Italian': icon = 'it'; break
-    case 'Japanese': icon = 'jp'; break
-    case 'Korean': icon = 'kr'; break
-    case 'Norwegian': icon = 'no'; break
-    case 'Polish': icon = 'pl'; break
-    case 'Romanian': icon = 'ro'; break
-    case 'Russian': icon = 'ru'; break
-    case 'Spanish': icon = 'es'; break
-    case 'Swedish': icon = 'se'; break
-    case 'Ukrainian': icon = 'ua'; break
-    default: icon = undefined
+function languageToIcon(language: string): string | undefined {
+  switch (language) {
+    case 'Czech': return 'cz'
+    case 'Dutch': return 'nl'
+    case 'French': return 'fr'
+    case 'German': return 'de'
+    case 'Hungarian': return 'hu'
+    case 'Italian': return 'it'
+    case 'Japanese': return 'jp'
+    case 'Korean': return 'kr'
+    case 'Norwegian': return 'no'
+    case 'Polish': return 'pl'
+    case 'Romanian': return 'ro'
+    case 'Russian': return 'ru'
+    case 'Spanish': return 'es'
+    case 'Swedish': return 'se'
+    case 'Ukrainian': return 'ua'
+    default: return undefined
   }
+}
 
+const LanguageIcon = (props: Props) => {
+  const icon = languageToIcon(props.language)
   if (props.language !== 'English' && icon === undefined && import.meta.env.DEV) {
     console.warn(`Unknown language: ${props.language}`)
   }
