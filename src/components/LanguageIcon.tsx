@@ -9,6 +9,7 @@ interface Props {
 function languageToIcon(language: string): string | undefined {
   switch (language) {
     case 'English': return 'gb'
+    case 'Chinese': return 'cn'
     case 'Austrian': return 'at'
     case 'Czech': return 'cz'
     case 'Dutch': return 'nl'
