@@ -1,5 +1,5 @@
 import styles from './LanguageIcon.module.css'
-import '/node_modules/flag-icons/css/flag-icons.min.css'
+import 'flag-icons/css/flag-icons.css';
 import { For, Show } from "solid-js";
 
 interface Props {
