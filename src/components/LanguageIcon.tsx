@@ -1,6 +1,6 @@
 import styles from './LanguageIcon.module.css'
 import '/node_modules/flag-icons/css/flag-icons.min.css'
-import { Show } from "solid-js";
+import { For, Show } from "solid-js";
 
 interface Props {
   language: string
