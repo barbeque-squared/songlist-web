@@ -44,7 +44,7 @@ const LanguageIcon = (props: Props) => {
       <span class={styles.LanguageIcon} title={props.language}>
         <For each={icons}>{(icon) => {
           return icon === undefined ? <span>??</span> :
-            <span classList={{ ['fi']: true, [`fi-${icon}`]: true }} title={props.language} />
+            <span classList={{ ['fi']: true, [`fi-${icon}`]: true }} />
         }}</For>
       </span>
     </Show>
