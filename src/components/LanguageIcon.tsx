@@ -19,6 +19,7 @@ function languageToIcon(language: string): string | undefined {
     case 'Italian': return 'it'
     case 'Japanese': return 'jp'
     case 'Korean': return 'kr'
+    case 'Latin': return 'va'
     case 'Norwegian': return 'no'
     case 'Other': return 'xx'
     case 'Polish': return 'pl'
